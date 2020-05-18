@@ -20,8 +20,7 @@ set autoindent
 set autoread " automatically reload files upon change outside VIM
 set backspace=indent,eol,start
 set cindent
-set colorcolumn=110
-"set cursorline
+set colorcolumn=85
 set encoding=utf-8
 set fdm=marker
 set foldenable
@@ -49,7 +48,6 @@ set smartcase
 set smartindent
 set smarttab
 set tabstop=4
-"set termguicolors
 set textwidth=70
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wrapmargin=0
@@ -95,7 +93,6 @@ nmap <silent> <leader>co :CocCommand workspace.showOutput<CR>
 " setup environment
 function! SetupEnvironment()
 	let l:path = expand('%:p')
-	
 	if l:path =~ '/home/uros/workspace/ragebite'
 		setlocal expandtab
 		setlocal tabstop=2 shiftwidth=2
