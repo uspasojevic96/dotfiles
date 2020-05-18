@@ -9,6 +9,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -52,6 +53,7 @@ set textwidth=70
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wrapmargin=0
 
+let g:vimspector_enable_mappings='HUMAN'
 let g:indentLine_char_list = ['|', '|', '|', '|']
 let g:coc_global_extensions = [
 	\ 'coc-tsserver'
