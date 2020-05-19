@@ -10,6 +10,7 @@ Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'puremourning/vimspector'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -25,6 +26,8 @@ set colorcolumn=85
 set encoding=utf-8
 set fdm=marker
 set foldenable
+set foldlevelstart=1
+set foldmethod=syntax
 set formatoptions=cqt "tcron
 set hlsearch
 set ignorecase
@@ -48,17 +51,20 @@ set sidescrolloff=15
 set smartcase
 set smartindent
 set smarttab
+set statusline^=%{coc#status()}
 set tabstop=4
 set textwidth=70
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wrapmargin=0
 
+au CursorHold * sil call CocActionAsync('highlight')
+au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+highlight CocErrorHighlight ctermfg=Red guibg=#ff0000
+highlight CocHighlightText ctermbg=Blue guibg=#005599
+
 let g:vimspector_enable_mappings='HUMAN'
 let g:indentLine_char_list = ['|', '|', '|', '|']
-let g:coc_global_extensions = [
-	\ 'coc-tsserver'
-	\ ]
-
+let g:coc_global_extensions = ['coc-highlight']
 " folding
 nnoremap <space> za
 
