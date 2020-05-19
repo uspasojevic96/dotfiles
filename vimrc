@@ -92,6 +92,11 @@ nmap <silent> <leader>cn <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>cp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>co :CocCommand workspace.showOutput<CR>
 
+" NERDTree
+nmap <C-N> :NERDTreeToggle<enter>
+nmap <C-T> :NERDTreeFocus<enter>
+nmap <C-]> :noh<enter>
+
 " setup environment
 function! SetupEnvironment()
 	let l:path = expand('%:p')
