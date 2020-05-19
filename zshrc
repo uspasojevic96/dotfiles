@@ -86,6 +86,10 @@ source $ZSH/oh-my-zsh.sh
    export EDITOR='vim'
  fi
 
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+  startx
+fi
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
