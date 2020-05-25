@@ -21,6 +21,7 @@ syntax on
 set autoindent
 set autoread " automatically reload files upon change outside VIM
 set backspace=indent,eol,start
+set bg=dark
 set cindent
 set colorcolumn=85
 set encoding=utf-8
