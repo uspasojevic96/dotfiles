@@ -12,7 +12,7 @@
 set $mod Mod4
 
 set $web_browser chromium
-set $terminal konsole
+set $terminal contour
 
 set $left h
 set $right l
