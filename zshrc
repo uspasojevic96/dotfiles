@@ -105,7 +105,8 @@ export PATH=$PATH:/opt/bin
 
 # improves sorting of ls with -la switch
 function ls () {
-	if [[ $2 == "-la" ]]; then
+	setopt cshnullglob
+	if [[ $2 == "-la" ]] || [[ $2 == "-al" ]]; then
 		command ls $1 -lUd -- .*(/) .*(^/) *(/) *(^/)
 	else
 		command ls "$@"
