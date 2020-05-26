@@ -90,6 +90,7 @@ if [[ "$(tty)" == "/dev/tty1" ]]; then
   startx
 fi
 
+export PATH=$PATH:/opt/bin
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -101,3 +102,12 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# improves sorting of ls with -la switch
+function ls () {
+	if [[ $2 == "-la" ]]; then
+		command ls $1 -lUd -- .*(/) .*(^/) *(/) *(^/)
+	else
+		command ls "$@"
+	fi
+}
