@@ -23,7 +23,7 @@ set autoread " automatically reload files upon change outside VIM
 set backspace=indent,eol,start
 set bg=dark
 set cindent
-set colorcolumn=85
+set colorcolumn=100
 set encoding=utf-8
 set fdm=marker
 set foldenable
@@ -38,7 +38,7 @@ set list
 set listchars=tab:\|\ ,trail:.
 set modeline
 set modelines=5
-set mouse=a
+"set mouse=a
 set noexpandtab
 set noswapfile
 set nowrap
@@ -54,9 +54,11 @@ set smartindent
 set smarttab
 set statusline^=%{coc#status()}
 set tabstop=4
-set textwidth=70
+set textwidth=100
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wrapmargin=0
+
+highlight Normal guibg=NONE ctermbg=NONE
 
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
