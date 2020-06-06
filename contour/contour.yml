@@ -18,7 +18,7 @@ profiles:
         # shell: "/bin/bash"
 
         # Determines the initial terminal sice in characters.
-        terminalSize:
+        terminal_size:
             columns: 130
             lines: 30
 
@@ -29,18 +29,24 @@ profiles:
 
         history:
             # Number of lines to preserve (-1 for infinite).
-            limit: -1
+            limit: 1000
             # Boolean indicating whether or not to scroll down to the bottom on screen updates.
-            autoScrollOnUpdate: true
+            auto_scroll_on_update: true
             # Number of lines to scroll on ScrollUp & ScrollDown events.
-            scrollMultiplier: 3
+            scroll_multiplier: 3
 
         # Initial font size in pixels.
-        fontSize: 18
+        font_size: 16
         # Font family to use for displaying text.
-        fontFamily: "Fira Code, Hack, Ubuntu Mono, Consolas, monospace"
+        font:
+            regular: "Fira Code"
+            # if bold/italic/bold_italic are not explicitely specified, the regular font with
+            # a style appended will be used.
+            #bold: "Hack:style=bold"
+            #italic: "Hack:style=italic"
+            #bold_italic: "Hack:style=bold italic"
         # Tab width to move the cursor to the right when a HT control character is recieved.
-        tabWidth: 4
+        tab_width: 8
         # Terminal cursor display configuration
         cursor:
             # Supported shapes are:
@@ -58,7 +64,7 @@ profiles:
         background:
             # Background opacity to use. A value of 1.0 means fully opaque whereas 0.0 means fully
             # transparent. Only values between 0.0 and 1.0 are allowed.
-            opacity: 1.0
+            opacity: 0.8
             # Some platforms can blur the transparent background (currently only Windows 10 is supported).
             blur: false
         # Specifies a colorscheme to use (alternatively the colors can be inlined).
@@ -198,19 +204,23 @@ logging:
     # file: "/tmp/contour.log"
 
     # Enable this option to log parser (syntax) errors in the VT sequence stream.
-    parseErrors: true
+    parse_errors: true
 
     # Enable this option to log VT semantic errors, such as invalid parameters to some VT sequence.
-    invalidOutput: true
+    invalid_output: true
 
     # Enable this option to log VT sequences that were seen but are unsupported.
-    unsupportedOutput: true
+    unsupported_output: true
 
     # Enable this option to log raw VT sequence input.
-    rawInput: false
-    # Enable this option to log raw VT sequence output.
-    rawOutput: false
+    raw_input: false
+
     # Enable this option to log parsed VT sequence input.
-    traceInput: false
+    trace_input: false
+
+    # Enable this option to log raw VT sequence output.
+    raw_output: false
+
     # Enable this option to log parsed VT sequence output.
-    traceOutput: false
+    trace_output: false
+
