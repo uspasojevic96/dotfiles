@@ -39,7 +39,7 @@ set listchars=tab:\|\ ,trail:.
 set modeline
 set modelines=5
 "set mouse=a
-set noexpandtab
+set expandtab
 set noswapfile
 set nowrap
 set nu
