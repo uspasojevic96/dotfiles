@@ -16,7 +16,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
-let g:gruvbox_contrast_light = 'hard'
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
 highlight Normal guibg=NONE ctermbg=NONE
@@ -25,7 +25,7 @@ syntax on
 set autoindent
 set autoread " automatically reload files upon change outside VIM
 set backspace=indent,eol,start
-set bg=light
+set bg=dark
 set cindent
 set colorcolumn=100
 set encoding=utf-8
@@ -95,6 +95,7 @@ let g:indentLine_char_list = ['|', '|', '|', '|']
 let g:coc_global_extensions = ['coc-highlight']
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'gruvbox'
 
 " folding
 nnoremap <space> za
