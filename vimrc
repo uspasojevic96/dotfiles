@@ -31,8 +31,8 @@ set colorcolumn=100
 set encoding=utf-8
 set fdm=marker
 set foldenable
-set foldlevelstart=1
-set foldmethod=syntax
+"set foldlevelstart=0
+"set foldmethod=syntax
 set formatoptions=cqt "tcron
 set hlsearch
 set ignorecase
