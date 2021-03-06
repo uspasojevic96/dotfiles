@@ -111,10 +111,16 @@ nmap <A-h> :wincmd h<enter>
 nmap <A-j> :wincmd j<enter>
 nmap <A-k> :wincmd k<enter>
 nmap <A-l> :wincmd l<enter>
+" mac
 nmap ˙ <A-h>
 nmap ∆ <A-j>
 nmap ˚ <A-k>
 nmap ¬ <A-l>
+" linux
+nmap <ESC>h <A-h>
+nmap <ESC>j <A-j>
+nmap <ESC>k <A-k>
+nmap <ESC>l <A-l>
 
 " tabnav
 nmap <S-H> :tabprev<enter>

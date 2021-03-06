@@ -90,6 +90,8 @@ if [[ "$(tty)" == "/dev/tty1" ]]; then
   startx
 fi
 
+alias n=ninja
+
 export PATH=$PATH:/opt/bin
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

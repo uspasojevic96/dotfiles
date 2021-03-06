@@ -25,7 +25,7 @@ bash /home/uros/screenswap.sh
 # Set wallpaper(s)
 nitrogen --restore &
 #picom &
-synergyc 192.168.10.51 &
+synergyc 192.168.11.51 &
 export PATH=$PATH:/opt/bin
 
 # Load window Manager

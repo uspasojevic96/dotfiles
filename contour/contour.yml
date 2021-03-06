@@ -36,7 +36,7 @@ profiles:
             scroll_multiplier: 3
 
         # Initial font size in pixels.
-        font_size: 16
+        font_size: 12
         # Font family to use for displaying text.
         font:
             regular: "Fira Code"
