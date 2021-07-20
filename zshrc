@@ -2,17 +2,18 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/uros/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="gnzh"
+ZSH_THEME="spaceship"
+# ZSH_THEME="gnzh"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -33,7 +34,7 @@ ZSH_THEME="gnzh"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -42,10 +43,12 @@ ZSH_THEME="gnzh"
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -64,11 +67,11 @@ DISABLE_AUTO_TITLE="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-nvm)
+plugins=(git zsh-nvm zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,16 +86,9 @@ source $ZSH/oh-my-zsh.sh
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='vim'
+   export EDITOR='nvim'
  fi
 
-if [[ "$(tty)" == "/dev/tty1" ]]; then
-  startx
-fi
-
-alias n=ninja
-
-export PATH=$PATH:/opt/bin
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -105,17 +101,23 @@ export PATH=$PATH:/opt/bin
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# improves sorting of ls with -la switch
-function ls () {
-	setopt cshnullglob
-	if [[ $2 == "-la" ]] || [[ $2 == "-al" ]]; then
-		if [ -z "$3" ]; then
-			ARG="$(pwd)"
-		else
-			ARG=$3
-		fi
-		command ls $1 -lUd -- $ARG/.*(/) $ARG/.*(^/) $ARG/*(/) $ARG/*(^/)
-	else
-		command ls "$@"
-	fi
-}
+# FUCK YOU BREW
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+export MONGODB_HOME=/opt/mongodb
+
+export PYTHON3_USER_HOME=$(python3 -m site --user-base)
+
+export PATH=$PATH:$MONGODB_HOME/bin
+export PATH=$PATH:$PYTHON3_USER_HOME/bin
+
+alias n=ninja
+alias clangd=/usr/local/Cellar/llvm/11.1.0/bin/clangd
+alias vim=/usr/local/bin/nvim
+
+if (( $+commands[tag] )); then
+  export TAG_SEARCH_PROG=rg  # replace with rg for ripgrep
+  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+  alias rg=tag  # replace with rg for ripgrep
+fi
