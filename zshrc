@@ -106,14 +106,21 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 export MONGODB_HOME=/opt/mongodb
+export FLUTTER_HOME=/opt/flutter
+export KUBERNETES_HOME=/opt/kubernetes
+
+export ANDROID_SDK_ROOT=/opt/android-sdk
 
 export PYTHON3_USER_HOME=$(python3 -m site --user-base)
 
 export PATH=$PATH:$MONGODB_HOME/bin
+export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$PYTHON3_USER_HOME/bin
+export PATH=$PATH:$FLUTTER_HOME/bin
+export PATH=$PATH:$KUBERNETES_HOME/bin
 
 alias n=ninja
-alias clangd=/usr/local/Cellar/llvm/11.1.0/bin/clangd
+alias clangd=/usr/local/Cellar/llvm/12.0.1/bin/clangd
 alias vim=/usr/local/bin/nvim
 
 if (( $+commands[tag] )); then
@@ -121,3 +128,7 @@ if (( $+commands[tag] )); then
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
   alias rg=tag  # replace with rg for ripgrep
 fi
+
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
