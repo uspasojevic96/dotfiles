@@ -2,6 +2,7 @@
 call plug#begin(stdpath('config') . '/init.nvim')
 
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'joshdick/onedark.vim'
 Plug 'glepnir/spaceline.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
@@ -13,9 +14,18 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'airblade/vim-gitgutter'
 Plug 'ericcurtin/CurtineIncSw.vim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 Plug 'rust-lang/rust.vim'
 Plug 'preservim/tagbar'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'puremourning/vimspector'
+" Plug 'github/copilot.vim'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'HerringtonDarkholme/yats.vim'
+Plug 'thosakwe/vim-flutter'
+Plug 'jparise/vim-graphql'
+Plug 'dense-analysis/ale'
 
 Plug 'kyazdani42/nvim-web-devicons'
 
@@ -28,7 +38,7 @@ autocmd CursorHold * sil call CocActionAsync('highlight')
 autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 autocmd VimLeave * set guicursor=a:ver1
-autocmd FileType scss setl iskeyword+=@-@
+"autocmd FileType scss setl iskeyword+=@-@
 "}}}
 
 "{{{Environment
@@ -46,6 +56,7 @@ set autoindent
 set autoread
 set backspace=indent,eol,start
 set cindent
+set clipboard+=unnamedplus
 set cmdheight=2
 set colorcolumn=110
 set cursorline
@@ -69,6 +80,7 @@ set noswapfile
 set nowrap
 set nu
 set numberwidth=5
+set re=0
 set rnu
 set scrolloff=8
 set shiftwidth=4
@@ -81,7 +93,7 @@ set smarttab
 set tabstop=4
 set termguicolors
 set textwidth=110
-set updatetime=300
+set updatetime=200
 set viminfo='10,\"100,:20,%,n~/.nviminfo
 "}}}
 
@@ -104,11 +116,20 @@ let g:spaceline_colorscheme='one'
 let g:spaceline_seperate_style='arrow'
 let g:spaceline_diff_tool='git-gutter'
 let g:tcomment_opleader1='yc'
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:typescript_compiler_binary='tsc'
+let g:indentLine_setConceal = 0
+let g:ale_fixers = {
+            \ 'typescript': ['eslint'],
+            \ 'javascript': ['eslint']
+\ }
+let g:prettier#autoformat_config_present = 1
+let g:prettier#autoformat_require_pragma = 0
 "}}}
 
 "{{{ Theme
 set background=dark
-colorscheme gruvbox8_hard
+colorscheme onedark
 "}}}
 
 "{{{ Functions
@@ -130,6 +151,7 @@ endfunction
 nmap <C-H> :bp<CR>
 nmap <C-L> :bn<CR>
 nmap <C-K> :bd<CR>
+nnoremap <C-c> :bd<CR>
 nnoremap <leader>cc :call CurtineIncSw()<CR>
 "}}}
 "{{{ Completion
@@ -164,10 +186,12 @@ nnoremap <silent> <C-T> :call fzf#run({
     \ 'sink*':  function('<sid>my_fzf_handler')})<CR>
 "}}}
 "{{{ Git
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit -v<CR>
-nnoremap <leader>ga :Gcommit --amend<CR>
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gc :Git commit -v<CR>
+nnoremap <leader>ga :Git commit --amend<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
+nnoremap <leader>gu :Git push<CR>
+nnoremap <leader>gb :Git blame<CR>
 vnoremap <leader>gd :diffput<CR>
 nmap <silent> <leader>gp :GFiles<CR>
 "}}}
@@ -175,6 +199,9 @@ nmap <silent> <leader>gp :GFiles<CR>
 nnoremap <space> za
 nmap <C-]> :noh<CR>
 nmap <leader>tt :TagbarToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-z> :NERDTree<CR>
+nnoremap <C-x> :NERDTreeToggle<CR>
 "}}}
 "{{{ Tabs
 nmap <S-T> :tabnew<CR>
@@ -194,6 +221,11 @@ nmap ˚ :wincmd k<CR>
 
 nmap <A-l> :wincmd l<CR>
 nmap ¬ :wincmd l<CR>
+"}}}
+"{{{ Rust
+nmap <leader>rcr :Cargo run<CR>
+nmap <leader>rct :Cargo test<CR>
+nmap <leader>rcb :Cargo build<CR>
 "}}}
 "}}}
 

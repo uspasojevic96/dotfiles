@@ -1,11 +1,16 @@
 {
-	"languageserver": {
-		"clangd": {
-			"command": "clangd",
-			"args": ["--background-index"],
-			"trace.server": "verbose",
-			"rootPatterns": ["compile_commands.json", ".git/"],
-			"filetypes": ["c", "cpp"]
-		}
-	}
+    "languageserver": {
+        "graphql": {
+            "command": "graphql-lsp",
+            "args": ["server", "-m", "stream"],
+            "filetypes": ["typescript", "typescriptreact", "graphql"]
+        },
+        "clangd": {
+            "command": "/usr/local/Cellar/llvm/12.0.1/bin/clangd",
+            "args": ["--background-index"],
+            "trace.server": "verbose",
+            "rootPatterns": ["compile_commands.json", ".git/"],
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
+        }
+    }
 }

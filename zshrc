@@ -118,9 +118,11 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$PYTHON3_USER_HOME/bin
 export PATH=$PATH:$FLUTTER_HOME/bin
 export PATH=$PATH:$KUBERNETES_HOME/bin
+export GPG_TTY=$(tty)
+export CW=$HOME/workspace/credeo
 
 alias n=ninja
-alias clangd=/usr/local/Cellar/llvm/12.0.1/bin/clangd
+alias clangd=/usr/local/Cellar/llvm/13.0.0_1/bin/clangd
 alias vim=/usr/local/bin/nvim
 
 if (( $+commands[tag] )); then
@@ -129,6 +131,37 @@ if (( $+commands[tag] )); then
   alias rg=tag  # replace with rg for ripgrep
 fi
 
+if [ -n "$(pgrep gpg-agent)" ]; then
+    export GPG_AGENT_INFO
+else
+    eval $(gpg-agent --daemon)
+fi
+
+autoload -Uz add-zsh-hook
+
+precmd_hook_contour()
+{
+    # Disable text reflow for the command prompt (and below).
+    print -n '\e[?2027l' >$TTY
+
+    # Marks the current line (command prompt) so that you can jump to it via key bindings.
+    echo -n '\e[>M' >$TTY
+
+    # Informs contour terminal about the current working directory, so that e.g. OpenFileManager works.
+    echo -ne '\e]7;'$(pwd)'\e\\' >$TTY
+
+    # Example hook to update configuration profile based on base directory.
+    # update_profile >$TTY
+}
+
+preexec_hook_contour()
+{
+    # Enables text reflow for the main page area again, so that a window resize will reflow again.
+    print -n "\e[?2027h" >$TTY
+}
+
+# add-zsh-hook precmd precmd_hook_contour
+# add-zsh-hook preexec preexec_hook_contour
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
