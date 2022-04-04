@@ -1,5 +1,10 @@
 [user]
 	email = uspasojevic96@gmail.com
 	name = Uros Spasojevic
+	signingkey = 7F2E407035983595
 [pull]
 	rebase = false
+[init]
+	defaultBranch = master
+[commit]
+	gpgsign = true
