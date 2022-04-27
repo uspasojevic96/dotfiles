@@ -113,6 +113,7 @@ export ANDROID_SDK_ROOT=/opt/android-sdk
 
 export PYTHON3_USER_HOME=$(python3 -m site --user-base)
 
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$MONGODB_HOME/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$PYTHON3_USER_HOME/bin
