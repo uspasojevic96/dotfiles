@@ -101,30 +101,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# FUCK YOU BREW
-export HOMEBREW_NO_AUTO_UPDATE=1
-export HOMEBREW_NO_INSTALL_CLEANUP=1
-
-export MONGODB_HOME=/opt/mongodb
-export FLUTTER_HOME=/opt/flutter
-export KUBERNETES_HOME=/opt/kubernetes
-
-export ANDROID_SDK_ROOT=/opt/android-sdk
-
-export PYTHON3_USER_HOME=$(python3 -m site --user-base)
-
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$MONGODB_HOME/bin
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$PYTHON3_USER_HOME/bin
-export PATH=$PATH:$FLUTTER_HOME/bin
-export PATH=$PATH:$KUBERNETES_HOME/bin
 export GPG_TTY=$(tty)
-export CW=$HOME/workspace/credeo
 
 alias n=ninja
-alias clangd=/usr/local/Cellar/llvm/13.0.0_1/bin/clangd
-alias vim=/usr/local/bin/nvim
+alias w3mimgdisplay=/usr/libexec/w3m/w3mimgdisplay
+
+export PATH=$PATH:$HOME/usr/opt/contour/bin
 
 if (( $+commands[tag] )); then
   export TAG_SEARCH_PROG=rg  # replace with rg for ripgrep
@@ -165,4 +147,4 @@ preexec_hook_contour()
 # add-zsh-hook preexec preexec_hook_contour
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
-prompt spaceship
+#prompt spaceship

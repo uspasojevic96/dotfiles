@@ -11,15 +11,15 @@
 
 set $mod Mod4
 
-set $web_browser chromium
-set $terminal konsole
+set $web_browser firefox
+set $terminal contour
 
 set $left h
 set $right l
 set $up k
 set $down j
 
-set $ws1 "1: dev"
+set $ws1 "1"
 set $ws2 "2: browser"
 set $ws3 "3: social"
 set $ws4 "4: random"
@@ -33,11 +33,13 @@ set $ws10 "10"
 workspace_layout tabbed
 
 gaps inner 15
+default_border pixel 2
+default_floating_border pixel 3
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
-font pango:DejaVu Sans Mono 12
+font pango:JetBrainsMono Nerd Font Mono Regular 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -55,15 +57,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 #exec --no-startup-id nm-applet
 
 bindsym $mod+i exec $web_browser
-bindsym $mod+ctrl+p exec i3lock -c 000000
+bindsym $mod+ctrl+p exec --no-startup-id i3lock -c 000000
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -71,18 +68,20 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 
+bindsym --release Print exec --no-startup-id 'maim -s ~/Pictures/screenshots/%b%d::%H%M%S.png'
+bindsym $mod+Shift+End exec --no-startup-id 'maim -s | xclip -selection clipboard -t image/png'
 bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+p exec rofi -show run -modi run -location 1 -width 100 -lines 2 -line-margin 0 -line-padding 1 -separator-style none -columns 9 -bw 0 -disable-history -hide-scrollbar -color-window "#222222, #222222, #b1b4b3" -color-normal "#222222, #b1b4b3, #222222, #005577, #b1b4b3" -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" -kb-row-select "Tab" -kb-row-tab ""
+bindsym $mod+p exec rofi -show run -mode run -columns 9 -bw 0 -disable-history -hide-scrollbar
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+p exec --no-startup-id dmenu_run
-bindsym $mod+slash exec "/home/uros/workspace/github.com/cspeterson/splatmoji/splatmoji type"
+#bindsym $mod+p exec --no-startup-id dmenu_run
+#bindsym $mod+slash exec "/home/uros/workspace/github.com/cspeterson/splatmoji/splatmoji type"
 
 # change focus
 bindsym $mod+$left focus left
@@ -159,7 +158,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [class="obs"] $ws7
+for_window [class="contour"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -195,5 +194,6 @@ bar {
         status_command i3status
 }
 
-exec_always --no-startup-id /home/uros/screenswap.sh
-exec $terminal
+exec --no-startup-id xclip
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id picom
