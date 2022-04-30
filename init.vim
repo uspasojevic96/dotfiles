@@ -27,7 +27,7 @@ Plug 'puremourning/vimspector'
 Plug 'thosakwe/vim-flutter'
 Plug 'jparise/vim-graphql'
 Plug 'dense-analysis/ale'
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+" Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
