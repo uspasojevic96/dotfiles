@@ -11,7 +11,7 @@
 
 set $mod Mod4
 
-set $web_browser firefox
+set $web_browser firefox-bin --class firefox
 set $terminal contour
 
 set $left h
@@ -19,7 +19,7 @@ set $right l
 set $up k
 set $down j
 
-set $ws1 "1"
+set $ws1 "1: dev"
 set $ws2 "2: browser"
 set $ws3 "3: social"
 set $ws4 "4: random"
@@ -34,7 +34,7 @@ workspace_layout tabbed
 
 gaps inner 15
 default_border pixel 2
-default_floating_border pixel 3
+default_floating_border pixel 2
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -159,7 +159,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 for_window [class="contour"] floating enable
-
+for_window [title="^Discord$"] move container to workspace $ws3
+assign [class="firefox"] $ws2
+assign [class="Signal"] $ws3
+assign [class="contour"] $ws1
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
