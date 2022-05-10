@@ -43,15 +43,6 @@ autocmd VimLeave * set guicursor=a:ver1
 "autocmd FileType scss setl iskeyword+=@-@
 "}}}
 
-"{{{Environment
-function! SetupEnvironment()
-	let l:path = expand('%:p')
-	if l:path =~ '/Users/uros/workspace/ragebite'
-        " TODO change coc-settings.json
-	endif
-endfunction
-"}}}
-
 "{{{ NVim
 syntax on
 set autoindent
