@@ -106,10 +106,18 @@ export GPG_TTY=$(tty)
 alias n=ninja
 alias w3mimgdisplay=/usr/libexec/w3m/w3mimgdisplay
 
+export JAVA_HOME=$HOME/usr/opt/jdk
+export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/usr/opt/contour/bin
+export PATH=$PATH:$HOME/usr/opt/tag/bin
+export PATH=$PATH:$JAVA_HOME/bin
+export PATH=$PATH:$GOPATH/bin
+export THEOS=$HOME/workspace/theos
+export THEOS_DEVICE_IP=192.168.11.71
 
 if (( $+commands[tag] )); then
   export TAG_SEARCH_PROG=rg  # replace with rg for ripgrep
+  export TAG_CMD_FMT_STRING='vi -c "call cursor({{.LineNumber}}, {{.ColumnNumber}})" "{{.Filename}}"'
   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
   alias rg=tag  # replace with rg for ripgrep
 fi
@@ -143,8 +151,8 @@ preexec_hook_contour()
     print -n "\e[?2027h" >$TTY
 }
 
-# add-zsh-hook precmd precmd_hook_contour
-# add-zsh-hook preexec preexec_hook_contour
+add-zsh-hook precmd precmd_hook_contour
+add-zsh-hook preexec preexec_hook_contour
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 #prompt spaceship

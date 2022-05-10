@@ -7,6 +7,7 @@ Plug 'glepnir/spaceline.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'andweeb/presence.nvim'
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -20,8 +21,8 @@ Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'puremourning/vimspector'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'github/copilot.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'github/copilot.vim'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'HerringtonDarkholme/yats.vim'
 Plug 'thosakwe/vim-flutter'
@@ -55,6 +56,7 @@ endfunction
 syntax on
 set autoindent
 set autoread
+set autowrite
 set backspace=indent,eol,start
 set cindent
 set clipboard+=unnamedplus
@@ -126,6 +128,42 @@ let g:ale_fixers = {
 \ }
 let g:prettier#autoformat_config_present = 1
 let g:prettier#autoformat_require_pragma = 0
+
+" General options
+let g:presence_auto_update         = 1
+let g:presence_neovim_image_text   = "The One True Text Editor"
+let g:presence_main_image          = "neovim"
+let g:presence_client_id           = "793271441293967371"
+let g:presence_debounce_timeout    = 10
+let g:presence_log_level           = "error"
+let g:presence_enable_line_number  = 0
+let g:presence_blacklist           = []
+let g:presence_buttons             = 1
+let g:presence_file_assets         = {}
+
+" Rich Presence text options
+let g:presence_editing_text        = "Editing %s"
+let g:presence_file_explorer_text  = "Browsing %s"
+let g:presence_git_commit_text     = "Committing changes"
+let g:presence_plugin_manager_text = "Managing plugins"
+let g:presence_reading_text        = "Reading %s"
+let g:presence_workspace_text      = "Working on %s"
+let g:presence_line_number_text    = "Line %s out of %s"
+
+
+" Go syntax highlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
+" Auto formatting and importing
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = "goimports"
+
+" Status line types/signatures
+let g:go_auto_type_info = 1
 "}}}
 
 "{{{ Theme
