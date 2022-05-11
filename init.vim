@@ -23,6 +23,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'puremourning/vimspector'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'github/copilot.vim'
+Plug 'ap/vim-buftabline'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'HerringtonDarkholme/yats.vim'
 Plug 'thosakwe/vim-flutter'
@@ -32,9 +33,10 @@ Plug 'dense-analysis/ale'
 Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
-" }}}
 
 filetype plugin on
+" }}}
+
 "{{{ Autocmd
 autocmd CursorHold * sil call CocActionAsync('highlight')
 autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
@@ -57,8 +59,7 @@ set cursorline
 set diffopt+=vertical
 set encoding=utf-8
 set expandtab
-set fdm=marker
-set foldenable
+set foldmethod=marker
 set formatoptions=cqt
 set hidden
 set hlsearch
@@ -89,6 +90,19 @@ set termguicolors
 set textwidth=110
 set updatetime=200
 set viminfo='10,\"100,:20,%,n~/.nviminfo
+"}}}
+
+"{{{ Environment
+function! SetGoFolding()
+    setlocal foldmethod=expr
+    setlocal foldexpr=nvim_treesitter#foldexpr()
+    setlocal foldnestmax=1
+endfunction
+
+augroup Go
+    autocmd!
+    autocmd FileType go call SetGoFolding()
+augroup END
 "}}}
 
 "{{{ Highlighting
@@ -141,7 +155,6 @@ let g:presence_reading_text        = "Reading %s"
 let g:presence_workspace_text      = "Working on %s"
 let g:presence_line_number_text    = "Line %s out of %s"
 
-
 " Go syntax highlighting
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -155,6 +168,9 @@ let g:go_fmt_command = "goimports"
 
 " Status line types/signatures
 let g:go_auto_type_info = 1
+
+let g:tagbar_width = 30
+let NERDTreeWinSize = 30
 "}}}
 
 "{{{ Theme
