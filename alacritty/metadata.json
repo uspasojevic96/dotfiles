@@ -2,5 +2,5 @@
     "name": "alacritty",
     "version": "1.0.0",
     "installScript": "install.sh",
-    "AffectedFiles": "~/.config/alacritty/alacritty.yml"
+    "AffectedFiles": ["~/.config/alacritty/alacritty.yml"]
 }
